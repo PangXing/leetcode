@@ -1,0 +1,8 @@
+.DS_Store
+log
+log/*
+venv
+venv/*
+*.pyc
+.idea
+.vscode
