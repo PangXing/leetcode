@@ -18,7 +18,8 @@ class Solution(object):
                 low = k[0]
                 high = k[1]
                 if i != low and i != high and i < low < high:
-                    res.append([nums[i], nums[low], nums[high]])
+                    tmp = [nums[i], nums[low], nums[high]]
+                    res.append(sorted(tmp))
 
         return res
 
