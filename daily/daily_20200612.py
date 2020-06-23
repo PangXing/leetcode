@@ -2,27 +2,31 @@
 
 class Solution(object):
     def threeSum(self, nums):
-        if len(nums) < 3:
+        size = len(nums)
+        if size < 3:
             return []
-        preSum = dict()
-        for i in range(len(nums)-1):
-            for k in range(i+1, len(nums)):
-                sum2 = nums[i] + nums[k]
-                preSum.setdefault(sum2, [])
-                preSum[sum2].append([i, k])
+        res_set = set()
+        nums.sort()
+        for i in range(size):
+            low = i + 1
+            high = size -1
+            while low < high:
+                three = nums[i] + nums[low] + nums[high]
+                if three == 0:
+                    res_set.add((nums[i], nums[low], nums[high]))
+                    low += 1
+                    high -= 1
+                elif three < 0:
+                    low += 1
+                else:
+                    high -= 1
         res = list()
-        for i in range(len(nums)):
-            d_sum = 0 - nums[i]
-            pre_list = preSum.get(d_sum, [])
-            for k in pre_list:
-                low = k[0]
-                high = k[1]
-                if i != low and i != high and i < low < high:
-                    tmp = [nums[i], nums[low], nums[high]]
-                    res.append(sorted(tmp))
-
+        for i in res_set:
+            res.append(list(i))
         return res
 
 if __name__ == '__main__':
     solution = Solution()
-    print solution.threeSum([-1, 0, 1, 2, -1, -4])
+    nums = [-1, 0, 1, 2, -1, -4]
+    nums = [-2,0,1,1,2]
+    print solution.threeSum(nums)

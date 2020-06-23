@@ -56,6 +56,16 @@ if __name__ == '__main__':
     min_heap = MinHeap(l1)
     print min_heap._item
 
+    import heapq
+    l1 = [7, 1, 3, 10, 5, 2, 8, 9, 6]
+    heapq.heapify(l1)
+    print l1
+    heapq.heappop(l1)
+    print l1
+
+
+
+
 
 
 
