@@ -2,31 +2,30 @@
 
 class Solution(object):
     def threeSum(self, nums):
-        size = len(nums)
-        if size < 3:
+        if not nums:
             return []
-        res_set = set()
         nums.sort()
-        for i in range(size):
-            low = i + 1
-            high = size -1
-            while low < high:
-                three = nums[i] + nums[low] + nums[high]
-                if three == 0:
-                    res_set.add((nums[i], nums[low], nums[high]))
-                    low += 1
-                    high -= 1
-                elif three < 0:
-                    low += 1
-                else:
-                    high -= 1
         res = list()
-        for i in res_set:
-            res.append(list(i))
+        low = 0
+        high = len(nums) -1
+        while low < high:
+            mid = 0 - (nums[low]+nums[high])
+            if mid > nums[high]:
+                high -= 1
+                while nums[high] == nums[high+1] and low < high:
+                    high -= 1
+            else:
+                if mid in nums[low+1: high]:
+                    res.append([nums[low], mid, nums[high]])
+
+                low += 1
+                while nums[low] == nums[low-1] and low < high:
+                    low += 1
         return res
+
 
 if __name__ == '__main__':
     solution = Solution()
     nums = [-1, 0, 1, 2, -1, -4]
-    nums = [-2,0,1,1,2]
+    #nums = [-2,0,1,1,2]
     print solution.threeSum(nums)
