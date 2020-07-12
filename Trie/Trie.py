@@ -2,7 +2,7 @@
 
 class TrieNode(object):
     def __init__(self):
-        self.flag = False #是否是单词
+        self.flag = False  #是否是单词
         self.words = {}    #子树节点
 
 
